@@ -2,16 +2,6 @@
 
 A production-ready Docker setup for running [n8n](https://n8n.io/) (workflow automation tool) with PostgreSQL database. This setup provides a clean, modular configuration for both development and production environments.
 
-## 📋 Table of Contents
-
-- [What is this?](#what-is-this)
-- [Prerequisites](#prerequisites)
-- [Quick Start](#quick-start)
-- [Detailed Setup](#detailed-setup)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-
 ## 🎯 What is this?
 
 This project provides a Docker-based setup for n8n, a powerful workflow automation tool. It includes:
