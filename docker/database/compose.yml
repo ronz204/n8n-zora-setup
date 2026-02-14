@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-zora}
+      POSTGRES_USER: ${POSTGRES_USER:-zora}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-p4ssw0rd}
+    networks:
+      - zora-network
+    volumes:
+      - zora-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zora -d zora"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
