@@ -31,7 +31,7 @@ Before you begin, make sure you have the following installed:
 - **Docker Compose** (usually included with Docker Desktop)
   - Minimum version: 2.0.0+
 - **Make** (optional, for using Makefile commands)
-  - Windows: Install via [Chocolatey](https://chocolatey.org/) with `choco install make`
+  - Windows: Install via [Scoop](https://scoop.sh/#/apps?q=make) with `scoop install main/make`
   - Mac: Comes pre-installed or install via Homebrew `brew install make`
   - Linux: Usually pre-installed or `sudo apt-get install make`
 
@@ -49,21 +49,16 @@ make --version  # Optional
 
 1. **Clone or download this repository**
 
-2. **Navigate to the docker directory**
-   ```bash
-   cd docker
-   ```
-
-3. **Configure environment variables**
+2. **Configure environment variables**
    ```bash
    # Copy the example files
-   cp database/secrets/.env.example database/secrets/.env.dev
-   cp service/secrets/.env.example service/secrets/.env.dev
+   cp ./docker/database/secrets/.env.example database/secrets/.env.dev
+   cp ./docker/service/secrets/.env.example service/secrets/.env.dev
    ```
 
 4. **Edit the environment files** and set your passwords:
-   - `database/secrets/.env.dev`
-   - `service/secrets/.env.dev`
+   - `docker/database/secrets/.env.dev`
+   - `docker/service/secrets/.env.dev`
 
 5. **Start the services**
    ```bash
@@ -127,7 +122,6 @@ TZ=America/Costa_Rica                # Change to your timezone
 ### Step 3: Start the Services
 
 ```bash
-cd docker
 make up-dev
 ```
 
@@ -167,7 +161,7 @@ docker logs -f n8n-dev
 
 ### Environment Variables
 
-#### N8N Service (`service/secrets/.env.dev`)
+#### N8N Service (`./docker/service/secrets/.env.dev`)
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -209,41 +203,37 @@ To run n8n on a different port:
 ### Starting the Services
 
 ```bash
-cd docker
-
 # Development environment
 make up-dev
 
 # Or without Make
-docker compose -f compose.dev.yml up -d
+docker compose -f ./docker/compose.dev.yml up -d
 ```
 
 ### Stopping the Services
 
 ```bash
-cd docker
-
 # Development environment (removes containers and volumes)
 make down-dev
 
 # Or without Make
-docker compose -f compose.dev.yml down -v
+docker compose -f ./docker/compose.dev.yml down -v
 ```
 
 **Note:** The `-v` flag removes volumes, which will delete all your workflows and data. To keep your data, use:
 
 ```bash
-docker compose -f compose.dev.yml down
+docker compose -f ./docker/compose.dev.yml down
 ```
 
 ### Restarting Services
 
 ```bash
 # Restart all services
-docker compose -f compose.dev.yml restart
+docker compose -f ./docker/compose.dev.yml restart
 
 # Restart only n8n
-docker compose -f compose.dev.yml restart n8n
+docker compose -f ./docker/compose.dev.yml restart n8n
 ```
 
 ### Accessing n8n Web Interface
@@ -256,14 +246,14 @@ docker compose -f compose.dev.yml restart n8n
 
 ```bash
 # All services
-docker compose -f compose.dev.yml logs
+docker compose -f ./docker/compose.dev.yml logs
 
 # Specific service
-docker compose -f compose.dev.yml logs n8n
-docker compose -f compose.dev.yml logs postgres
+docker compose -f ./docker/compose.dev.yml logs n8n
+docker compose -f ./docker/compose.dev.yml logs postgres
 
 # Follow logs in real-time
-docker compose -f compose.dev.yml logs -f n8n
+docker compose -f ./docker/compose.dev.yml logs -f n8n
 ```
 
 ### Accessing the Database
@@ -283,10 +273,10 @@ docker exec -it postgres-dev psql -U zora -d zora
 ```
 n8n-zora-setup/
 ├── README.md
+├── Makefile                      # Convenience commands
 └── docker/
     ├── compose.base.yml          # Base volumes and networks
-    ├── compose.dev.yml            # Development environment orchestration
-    ├── Makefile                   # Convenience commands
+    ├── compose.dev.yml           # Development environment orchestration
     ├── database/
     │   ├── compose.base.yml      # PostgreSQL base configuration
     │   ├── compose.dev.yml       # PostgreSQL dev configuration
