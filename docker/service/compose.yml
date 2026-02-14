@@ -1,0 +1,16 @@
+services:
+  n8n:
+    image: n8nio/n8n:2.7.5
+    restart: unless-stopped
+    container_name: n8n
+    env_file:
+      - .env
+    ports:
+      - "5678:5678"
+    networks:
+      - zora-network
+    volumes:
+      - n8n-data:/home/node/.n8n
+    depends_on:
+      postgres:
+        condition: service_healthy
