@@ -1,0 +1,7 @@
+services:
+  postgres:
+    extends:
+      service: postgres
+      file: compose.base.yml
+    container_name: postgres-dev
+    env_file: ./secrets/.env.dev
