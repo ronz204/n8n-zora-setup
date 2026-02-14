@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     container_name: n8n
     env_file:
-      - .env
+      - ./secrets/.env
     ports:
       - "5678:5678"
     networks:
