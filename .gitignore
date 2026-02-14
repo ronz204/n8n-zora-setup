@@ -1,0 +1,17 @@
+# Variables de entorno
+.env
+.env.dev
+.env.prod
+.env.stage
+.env.local
+
+# Backups
+*.sql
+backup_*
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
