@@ -4,4 +4,4 @@ services:
       service: n8n
       file: compose.base.yml
     container_name: n8n-dev
-    env_file: ./secrets/.env.dev
+    env_file: ./source/envs/.env.dev

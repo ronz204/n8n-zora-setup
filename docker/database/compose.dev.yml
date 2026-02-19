@@ -4,4 +4,4 @@ services:
       service: postgres
       file: compose.base.yml
     container_name: postgres-dev
-    env_file: ./secrets/.env.dev
+    env_file: ./source/envs/.env.dev
