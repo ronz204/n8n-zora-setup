@@ -1,0 +1,6 @@
+name: zora-dev
+
+include:
+  - path: ./compose.base.yml
+  - path: ./docker/service/compose.dev.yml
+  - path: ./docker/database/compose.dev.yml
