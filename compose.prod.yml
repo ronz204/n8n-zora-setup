@@ -1,0 +1,6 @@
+name: zora-prod
+
+include:
+  - path: ./compose.base.yml
+  - path: ./docker/service/compose.prod.yml
+  - path: ./docker/database/compose.prod.yml
