@@ -1,0 +1,22 @@
+services:
+  zora:
+    image: n8nio/n8n:2.7.5
+    restart: unless-stopped
+    container_name: zora-n8n
+    ports:
+      - "5678:5678"
+    networks:
+      - zora-network
+    volumes:
+      - n8n-data:/home/node/.n8n
+    # Healthcheck to ensure n8n is ready
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5678/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      # Ensure n8n waits for Postgres to be healthy
+      postgres:
+        condition: service_healthy
