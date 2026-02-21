@@ -1,7 +1,0 @@
-services:
-  postgres:
-    extends:
-      service: postgres
-      file: compose.base.yml
-    container_name: postgres-prod
-    env_file: ./source/envs/.env.prod
