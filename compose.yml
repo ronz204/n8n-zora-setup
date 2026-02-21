@@ -1,0 +1,18 @@
+name: zora
+
+include:
+  - path: ./docker/service/compose.yml
+  - path: ./docker/database/compose.yml
+
+volumes:
+  zora-data:
+    driver: local
+    name: zora-data
+  n8n-data:
+    driver: local
+    name: n8n-data
+
+networks:
+  zora-network:
+    driver: bridge
+    name: zora-network
