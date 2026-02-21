@@ -1,6 +1,7 @@
 name: zora
 
 include:
+  - path: ./docker/cache/compose.yml
   - path: ./docker/service/compose.yml
   - path: ./docker/database/compose.yml
 
@@ -8,6 +9,9 @@ volumes:
   zora-data:
     driver: local
     name: zora-data
+  redis-data:
+    driver: local
+    name: redis-data
   n8n-data:
     driver: local
     name: n8n-data
