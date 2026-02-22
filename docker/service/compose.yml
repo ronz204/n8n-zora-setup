@@ -3,6 +3,7 @@ services:
     image: n8nio/n8n:2.7.5
     restart: unless-stopped
     container_name: zora-n8n
+    env_file: ./envs/.env
     ports:
       - "5678:5678"
     networks:
@@ -19,4 +20,7 @@ services:
     depends_on:
       # Ensure n8n waits for Postgres to be healthy
       postgres:
+        condition: service_healthy
+      # Ensure n8n waits for Redis to be healthy
+      redis:
         condition: service_healthy
