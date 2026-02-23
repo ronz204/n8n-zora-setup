@@ -52,7 +52,7 @@ TZ=America/Costa_Rica
 #### 2. Start the services
 
 ```bash
-docker compose up -d
+make up
 ```
 
 This starts all three containers. n8n waits for both PostgreSQL and Redis to be healthy before starting.
@@ -65,26 +65,24 @@ Open `http://localhost:5678` and log in with the credentials set in `docker/serv
 
 ```bash
 # Start
-docker compose up -d
+make up
 
 # Stop (keep volumes)
-docker compose down
+make down
 
 # Stop and remove all data
-docker compose down -v
+make clean
 
-# View logs
-docker compose logs -f zora
-
-# Restart n8n only
-docker compose restart zora
+# View stats
+make stats
 ```
 
 ### Project Structure
 
 ```
 n8n-zora-setup/
-├── compose.yml                 # Root orchestration (volumes, networks, includes)
+├── compose.yml                 # Root orchestration
+├── Makefile                    # Make scripts
 └── docker/
     ├── cache/
     │   └── compose.yml         # Redis service
