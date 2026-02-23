@@ -2,10 +2,6 @@
 
 Docker setup for running [n8n](https://n8n.io/) with PostgreSQL and Redis.
 
-### Prerequisites
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (v20.10+) or Docker Engine + Compose plugin
-
 ### Setup
 
 #### 1. Configure environment variables
